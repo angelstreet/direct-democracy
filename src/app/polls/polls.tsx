@@ -120,8 +120,8 @@ function MainPoll() {
   if (!poll) return null
 
   return (
-    <div className="max-w-7xl mx-auto px-4 mb-8">
-      <div className="relative max-w-lg mx-auto">
+    <div className="w-120 mx-auto px-4 mb-8">
+      <div className="relative">
         <div className="fixed-height-container">
           <button
             onClick={handlePrevious}
@@ -245,33 +245,12 @@ function PollsExplorer() {
     { name: 'Elon Tweets', active: false }
   ]
 
-  // Type definitions for better type safety
-  type BinaryPoll = {
-    id: number
-    question: string
-    type: 'binary'
-    chance: number
-    volume: string
-  }
-
-  type MultiChoicePoll = {
-    id: number
-    question: string
-    type: 'multi'
-    choices: Array<{
-      name: string
-      chance: number
-    }>
-    volume: string
-  }
-
-  type Poll = BinaryPoll | MultiChoicePoll
-
-  const pollsData: Poll[] = [
+  // Base poll data with fixed volumes
+  const basePollsData = [
     {
       id: 1,
       question: "Premier League Winner",
-      type: "multi",
+      type: "multi" as const,
       choices: [
         { name: "Liverpool", chance: 77 },
         { name: "Arsenal", chance: 20 },
@@ -282,7 +261,7 @@ function PollsExplorer() {
     {
       id: 2,
       question: "NBA Champion",
-      type: "multi",
+      type: "multi" as const,
       choices: [
         { name: "Boston Celtics", chance: 27 },
         { name: "Oklahoma City Thunder", chance: 27 },
@@ -293,32 +272,31 @@ function PollsExplorer() {
     {
       id: 3,
       question: "Russia x Ukraine ceasefire in 2025?",
-      type: "binary",
+      type: "binary" as const,
       chance: 68,
       volume: "$2m Vol."
     },
     {
       id: 4,
       question: "Bitcoin above $97,000 on February?",
-      type: "binary", 
+      type: "binary" as const,
       chance: 28,
       volume: "$4m Vol."
     },
     {
       id: 5,
       question: "Trump ends Ukraine war in first 90 days?",
-      type: "binary",
+      type: "binary" as const,
       chance: 35,
       volume: "$14m Vol."
-    },
-    {
-      id: 6,
-      question: "Ethereum above $2,700 on February?",
-      type: "binary",
-      chance: 20,
-      volume: "$3m Vol."
     }
   ]
+
+  // Create array of 15 polls by repeating the base data with consistent volumes
+  const pollsData = Array.from({ length: 15 }, (_, index) => ({
+    ...basePollsData[index % basePollsData.length],
+    id: index + 1 // Ensure unique IDs
+  }))
 
   return (
     <div className="w-full bg-gray-900 text-white">
@@ -374,9 +352,9 @@ function PollsExplorer() {
         </div>
       </div>
 
-      {/* Polls Grid */}
+      {/* Polls Grid - Fixed 5 columns */}
       <div className="px-4 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+        <div className="grid grid-cols-5 gap-3">
           {pollsData.map((poll) => (
             <div
               key={poll.id}
@@ -387,16 +365,16 @@ function PollsExplorer() {
               </div>
               
               {poll.type === 'binary' ? (
-                <div className="flex items-center justify-between">
-                  <div className="text-lg font-bold text-green-400">{poll.chance}%</div>
+                <div className="flex items-center justify-between"> 
                   <div className="flex gap-1.5">
-                    <button className="px-3 py-1 text-xs rounded bg-red-500/20 hover:bg-red-500/30 text-red-400">
+                    <button className="px-8 py-1 text-xs rounded bg-red-500/20 hover:bg-red-700/30 text-red-500">
                       No
                     </button>
-                    <button className="px-3 py-1 text-xs rounded bg-green-500/20 hover:bg-green-500/30 text-green-400">
+                    <button className="px-8 py-1 text-xs rounded bg-green-500/20 hover:bg-green-700/30 text-green-500">
                       Yes
                     </button>
                   </div>
+                  <div className="text-lg font-bold text-green-400">{poll.chance}%</div>
                 </div>
               ) : (
                 <div className="space-y-1.5">
@@ -404,10 +382,13 @@ function PollsExplorer() {
                     <div key={index} className="flex justify-between items-center">
                       <span className="text-xs text-gray-400">{choice.name}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-medium text-gray-300">{choice.chance}%</span>
-                        <button className="px-2 py-0.5 text-xs rounded bg-gray-700/50 hover:bg-gray-700 text-gray-300">
-                          Vote
+                        <button className="px-3 py-1 text-xs rounded bg-red-500/20 hover:bg-red-700/30 text-red-500">
+                          No
                         </button>
+                        <button className="px-3 py-1 text-xs rounded bg-green-500/20 hover:bg-green-700/30 text-green-500">
+                          Yes
+                        </button>
+                        <span className="text-xs font-medium text-gray-300">{choice.chance}%</span>
                       </div>
                     </div>
                   ))}
