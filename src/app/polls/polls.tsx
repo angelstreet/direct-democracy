@@ -198,20 +198,16 @@ export function PollSwipe() {
               {/* Results Animation */}
               {currentVote.showResults && (
                 <div className="mt-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg animate-fade-in">
-                  <div className="text-center">
-                    <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">Poll Results</div>
-                    <div className="flex justify-center items-center gap-12">
+                  <div className="text-center space-y-2">
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Poll Results</div>
+                    <div className="flex justify-center items-center gap-8">
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-red-500 dark:text-red-400 mb-1">
-                          {poll.votes.no}%
-                        </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">No</div>
+                        <div className="text-2xl font-bold text-red-500 dark:text-red-400">{poll.votes.no}%</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-300">No</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-green-500 dark:text-green-400 mb-1">
-                          {poll.votes.yes}%
-                        </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">Yes</div>
+                        <div className="text-2xl font-bold text-green-500 dark:text-green-400">{poll.votes.yes}%</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-300">Yes</div>
                       </div>
                     </div>
                   </div>
