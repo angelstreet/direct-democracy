@@ -1,18 +1,22 @@
 src/
 ├── app/
-│   ├── page.tsx            # Home route (/)
-│   ├── dashboard/
-│   │   └── page.tsx        # Dashboard route (/dashboard)
-│   ├── polls/
-│   │   └── page.tsx        # Polls route (/polls)
-│   └── profile/
-│       └── page.tsx        # Profile route (/profile)
-├── components/
-│   ├── landing/
+│   ├── (landing)/
+│   │   ├── page.tsx
 │   │   └── landing.tsx
 │   ├── dashboard/
+│   │   ├── page.tsx
 │   │   └── dashboard.tsx
 │   ├── polls/
-│   │   └── swipe.tsx
-│   └── profile/
-│       └── profile.tsx
+│   │   ├── page.tsx
+│   │   └── polls.tsx
+│   ├── profile/
+│   │   ├── page.tsx
+│   │   └── profile.tsx
+│   └── page.tsx
+└── components/
+    ├── layout/
+    │   ├── auth-layout.tsx
+    │   └── nav-menu.tsx
+    └── theme/
+        ├── theme-provider.tsx
+        └── theme-toggle.tsx

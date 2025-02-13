@@ -1,10 +1,10 @@
-import { Dashboard } from './dashboard'
+import { Profile } from './profile'
 import { AuthLayout } from '@/components/layout/auth-layout'
 
-export default function DashboardPage() {
+export default function ProfilePage() {
   return (
     <AuthLayout>
-      <Dashboard />
+      <Profile />
     </AuthLayout>
   )
 } 

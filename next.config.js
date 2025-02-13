@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // your config options here
+  webpack: (config) => {
+    return config;
+  },
+  async rewrites() {
+    return [];
+  },
 };
 
 module.exports = nextConfig; 
