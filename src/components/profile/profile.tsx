@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { User, Settings, Lock, Bell, Globe } from 'lucide-react'
 

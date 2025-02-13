@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Globe, ChevronRight, Lock, LineChart, BarChart } from 'lucide-react'
 

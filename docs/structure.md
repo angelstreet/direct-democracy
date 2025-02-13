@@ -1,30 +1,18 @@
 src/
-  ├── app/
-  │   ├── layout.tsx
-  │   ├── page.tsx
-  │   └── globals.css
-  ├── components/
-  │   ├── ui/               # shadcn components
-  │   ├── landing/         
-  │   │   ├── index.tsx    # Main landing component
-  │   │   ├── header.tsx
-  │   │   ├── hero.tsx
-  │   │   ├── poll.tsx
-  │   │   ├── features.tsx
-  │   │   ├── steps.tsx
-  │   │   ├── cta.tsx
-  │   │   └── footer.tsx
-  │   ├── auth/
-  │   │   └── login.tsx
-  │   ├── polls/
-  │   │   ├── card.tsx
-  │   │   ├── swipe.tsx
-  │   │   └── list.tsx
-  │   ├── dashboard/
-  │   │   ├── stats.tsx
-  │   │   ├── charts.tsx
-  │   │   └── recent.tsx
-  │   └── profile/
-      └── form.tsx
-  └── lib/
-      └── utils.ts
+├── app/
+│   ├── page.tsx            # Home route (/)
+│   ├── dashboard/
+│   │   └── page.tsx        # Dashboard route (/dashboard)
+│   ├── polls/
+│   │   └── page.tsx        # Polls route (/polls)
+│   └── profile/
+│       └── page.tsx        # Profile route (/profile)
+├── components/
+│   ├── landing/
+│   │   └── landing.tsx
+│   ├── dashboard/
+│   │   └── dashboard.tsx
+│   ├── polls/
+│   │   └── swipe.tsx
+│   └── profile/
+│       └── profile.tsx
